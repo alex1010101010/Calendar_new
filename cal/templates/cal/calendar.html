@@ -1,0 +1,25 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}
+Calendar
+{% endblock %}
+
+{% block content %}
+<div class="clearfix">
+	{% if user.is_authenticated %}
+	<a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
+	<a class="btn btn-info right" href="{% url 'cal:event_new' %}"> New Event </a>
+	<a class="btn btn-info right" href="{% url 'logout' %}" >Log out</a>
+
+	{% else %}
+	<a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
+	<a class="btn btn-info right"  href="{% url 'login'%}" >Login</a>
+	<a class="btn btn-info right"  href="{% url 'signup'%}" >SignUp</a>
+
+
+</div>
+{% endif %}
+{{ calendar }}
+{% endblock %}
